@@ -1,0 +1,173 @@
+[
+  {
+    "name": "clario-shield",
+    "source": "2026/09/osel-render-clario-shield.jpg",
+    "width": 1440,
+    "url": "https://oseldevices.com/wp-content/uploads/2026/09/osel-render-clario-shield.jpg",
+    "bytes": 63752,
+    "height": 365,
+    "actualWidth": 798
+  },
+  {
+    "name": "clario-zen",
+    "source": "2026/09/osel-render-clario-zen.jpg",
+    "width": 1440,
+    "url": "https://oseldevices.com/wp-content/uploads/2026/09/osel-render-clario-zen.jpg",
+    "bytes": 54372,
+    "height": 526,
+    "actualWidth": 788
+  },
+  {
+    "name": "horizon-blaze",
+    "source": "2026/09/osel-render-horizon-blaze.jpg",
+    "width": 1440,
+    "url": "https://oseldevices.com/wp-content/uploads/2026/09/osel-render-horizon-blaze.jpg",
+    "bytes": 109272,
+    "height": 864,
+    "actualWidth": 1265
+  },
+  {
+    "name": "clario-slim",
+    "source": "2026/09/osel-render-clario-slim.jpg",
+    "width": 1440,
+    "url": "https://oseldevices.com/wp-content/uploads/2026/09/osel-render-clario-slim.jpg",
+    "bytes": 109714,
+    "height": 935,
+    "actualWidth": 1400
+  },
+  {
+    "name": "engage-board",
+    "source": "2026/09/osel-render-engage-board.jpg",
+    "width": 1440,
+    "url": "https://oseldevices.com/wp-content/uploads/2026/09/osel-render-engage-board.jpg",
+    "bytes": 18110,
+    "height": 529,
+    "actualWidth": 571
+  },
+  {
+    "name": "nomad-link",
+    "source": "2026/09/osel-render-nomad-link.jpg",
+    "width": 1440,
+    "url": "https://oseldevices.com/wp-content/uploads/2026/09/osel-render-nomad-link.jpg",
+    "bytes": 48988,
+    "height": 507,
+    "actualWidth": 791
+  },
+  {
+    "name": "nomad-curve",
+    "source": "2026/09/osel-render-nomad-curve.jpg",
+    "width": 1440,
+    "url": "https://oseldevices.com/wp-content/uploads/2026/09/osel-render-nomad-curve.jpg",
+    "bytes": 82108,
+    "height": 713,
+    "actualWidth": 1267
+  },
+  {
+    "name": "nomad-flex",
+    "source": "2026/09/osel-render-nomad-flex.jpg",
+    "width": 1440,
+    "url": "https://oseldevices.com/wp-content/uploads/2026/09/osel-render-nomad-flex.jpg",
+    "bytes": 52614,
+    "height": 665,
+    "actualWidth": 999
+  },
+  {
+    "name": "nalco",
+    "source": "2024/06/NALCO.jpg-300x300.png",
+    "width": 240,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/06/NALCO.jpg-300x300.png",
+    "bytes": 3296,
+    "height": 240,
+    "actualWidth": 240
+  },
+  {
+    "name": "muse-duo",
+    "source": "2026/09/osel-render-muse-duo.jpg",
+    "width": 1440,
+    "url": "https://oseldevices.com/wp-content/uploads/2026/09/osel-render-muse-duo.jpg",
+    "bytes": 36796,
+    "height": 425,
+    "actualWidth": 781
+  },
+  {
+    "name": "hearing",
+    "source": "2024/04/hearing.webp",
+    "width": 900,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/04/hearing.webp",
+    "bytes": 30094,
+    "height": 528,
+    "actualWidth": 755
+  },
+  {
+    "name": "manufacturing",
+    "source": "2024/05/Manu.webp",
+    "width": 1600,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/05/Manu.webp",
+    "bytes": 44992,
+    "height": 666,
+    "actualWidth": 1600
+  },
+  {
+    "name": "indian-oil",
+    "source": "2024/06/Indian_Oil_Logo.svg-300x300.png",
+    "width": 240,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/06/Indian_Oil_Logo.svg-300x300.png",
+    "bytes": 6480,
+    "height": 240,
+    "actualWidth": 240
+  },
+  {
+    "name": "nbcc",
+    "source": "2024/06/NBCC.jpg-300x300.png",
+    "width": 240,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/06/NBCC.jpg-300x300.png",
+    "bytes": 6414,
+    "height": 240,
+    "actualWidth": 240
+  },
+  {
+    "name": "drdo",
+    "source": "2024/06/DRDO_Logo-300x300.png",
+    "width": 240,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/06/DRDO_Logo-300x300.png",
+    "bytes": 10156,
+    "height": 240,
+    "actualWidth": 240
+  },
+  {
+    "name": "alimco",
+    "source": "2024/06/Alimco-300x300.png",
+    "width": 240,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/06/Alimco-300x300.png",
+    "bytes": 9160,
+    "height": 240,
+    "actualWidth": 240
+  },
+  {
+    "name": "axis-bank",
+    "source": "2024/06/Axis-Bank-300x300.png",
+    "width": 240,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/06/Axis-Bank-300x300.png",
+    "bytes": 2822,
+    "height": 240,
+    "actualWidth": 240
+  },
+  {
+    "name": "india-tv",
+    "source": "2024/06/India-TV-300x300.png",
+    "width": 240,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/06/India-TV-300x300.png",
+    "bytes": 2168,
+    "height": 240,
+    "actualWidth": 240
+  },
+  {
+    "name": "doordarshan",
+    "source": "2024/06/Doordarshan-300x300.png",
+    "width": 240,
+    "url": "https://oseldevices.com/wp-content/uploads/2024/06/Doordarshan-300x300.png",
+    "bytes": 6256,
+    "height": 240,
+    "actualWidth": 240
+  }
+]

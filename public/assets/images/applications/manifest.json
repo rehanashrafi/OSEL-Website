@@ -1,0 +1,129 @@
+{
+  "tool": "Built-in image_gen",
+  "prompts": {
+    "meeting": "Use case: photorealistic-natural. Asset: premium corporate LED-display application photograph for a website product card, not a depiction of a specific manufactured model. Create a modern executive meeting room with a large extremely slim wall-mounted seamless LED display, shown at a gentle three-quarter angle, elegant oak conference table, precise brushed metal details and restrained architecture. Display shows only an abstract blue and pale blue flowing landscape-like texture, no writing or UI. Commercial architectural photography, realistic light from tall windows balanced with soft cinematic fill, natural material detail, believable display construction. Consistent palette navy, OSEL blue #005AAB, pale blue #62B7E8, neutral stone, white. Wide landscape 16:9 composition, high-resolution 4K look, sharp main display, centered safe subject area for responsive cropping. No text, no lettering, no numbers, no logos, no watermark, no people, no sci-fi neon, no unrelated gadgets. Do not invent specifications or label this as an actual OSEL installation.",
+    "control": "Photorealistic premium architectural commercial photograph, high-resolution 4K look, wide 16:9. A contemporary operations control room with one impressive seamless fine-pitch LED video wall spanning the far wall, three orderly operator desks in foreground and natural realistic cable management, refined navy and neutral gray finishes, restrained OSEL blue and pale-blue display content. The large wall shows abstract geographic contours and simple unlabeled data shapes, no text or numbers. Credible technology, precise architectural perspective, softly lit workstation surfaces, balanced cinematic light, subtle reflections. No people, no brands, logos, watermarks, text, fake specifications, sci-fi holograms or neon. This is an illustrative micro-pitch display application scene, not a specific product design or claimed real facility. Keep the main video wall centered and visible for responsive cropping. Match a premium modern corporate meeting-room photography collection.",
+    "curve": "Use case photorealistic-natural, premium commercial architectural photography, wide landscape 16:9, high-resolution 4K look. Illustrative curved rental LED display application in a modern exhibition hall: a large freestanding smooth concave curved LED wall, believable modular rental support discreetly visible at its outer edge, showing a continuous abstract blue oceanic wave texture across the curve. Three-quarter view clearly communicates curvature. Empty polished stone exhibition floor, high architectural ceiling, clean unbranded surroundings, no other products, restrained soft cinematic lighting, realistic reflections and precise display edges. Consistent OSEL blue #005AAB and pale blue #62B7E8 with navy, white and neutral stone. No text or letters anywhere, no logos, signage, watermark, people, cars, gadgets, holograms, excessive neon or invented product specifications. Not a specific product model or real claimed OSEL installation. Main subject central with safe room for responsive crop.",
+    "flex": "Photorealistic premium commercial event-production photograph, wide landscape 16:9, high resolution 4K look. An empty indoor concert arena stage during a professional display rehearsal. Touring LED installation with a broad central LED wall and three tall narrow open-mesh LED curtain sections on either side, discreet realistic overhead black truss and tidy stage infrastructure. Screens show abstract flowing blue and pale blue fabric-like imagery, NO writing, no UI. Camera from empty audience floor shows scale and realistic LED pixel texture without moire. Restrained white stage wash with soft blue accents, not extreme neon or lasers. Navy stage deck, credible engineering and installation, subtle cinematic contrast, premium corporate technology visual style. No performers, crowd, unrelated products, logos, letters, text, numbers, watermark or invented technical specifications. Illustrative rental/stage LED application, not an actual named OSEL product or venue. Keep main installation centered for responsive crops.",
+    "link": "Premium photorealistic commercial architectural photograph, 4K high-resolution look, wide 16:9. A modern conference event venue before guests arrive, showing a versatile modular rental LED installation: one central wide landscape LED screen on a low stage and two narrower freestanding portrait LED panels aligned on either side, neat black ground supports and discreet rigging, rows of simple elegant empty chairs at bottom edge. Soft daylight balanced with professional white event lighting. Display content only abstract geometric blue-to-pale-blue sculptural shapes, no writing or UI. OSEL blue #005AAB, pale blue #62B7E8, navy and neutral stone materials, realistic shadows, believable modular display engineering, restrained cinematic composition. Visually distinct from a concert arena: intimate corporate event rather than concert. No logos, no text, no letters or numbers, no watermarks, no unrelated electronic products, no people, no excessive sci-fi. Illustrative rental-system application, not a specific OSEL model or installation. Center the main screens for responsive cropping.",
+    "retail": "Photorealistic premium commercial architecture photography, 4K high-resolution look, wide landscape 16:9. Contemporary luxury retail arcade with a suspended slim double-sided digital signage display in the central aisle, photographed at an oblique angle with a second matching suspended display further along the arcade showing its opposite face. Believable slim rectangular screen enclosures and paired straight suspension rods attached to a real ceiling. Screens contain only elegant abstract blue/pale-blue sculptural artwork, no text or advertisements. Refined stone floor, neutral storefront glass, warm wood and brushed metal details, bright soft daylight, controlled cinematic reflections. OSEL blue #005AAB and pale blue #62B7E8 accents, otherwise understated natural materials. Main display centered for responsive crops; medium-wide camera, clear screen surfaces. No logos, lettering, labels, watermark, people, mannequins, unrelated gadgets, excessive sci-fi or fake specifications. Illustrative dual-sided display application, not an invented named product or claimed real OSEL installation.",
+    "vision": "Photorealistic premium corporate technology architectural photograph for a tall website LED displays category background. Portrait 3:4 framing, high-resolution 4K look. A monumental seamless indoor LED wall integrated into a sophisticated modern corporate atrium, seen from a gentle off-center angle; large display occupies central upper two-thirds with stone columns and elegant brushed-metal framing, realistic modular installation subtly apparent only at the side. The display shows a tranquil blue mountainous landscape without text. A little polished stone foreground, soft daylight through clerestory windows and restrained architectural lighting. Navy, OSEL blue #005AAB, pale blue #62B7E8 and warm neutral stone. Cinematic but believable, detailed real materials, high-end commercial photography, quiet lower portion for existing website copy overlay. No logos, no text, no lettering, no numerical content, no watermark, no people, no unrelated gadgets, no sci-fi or neon. This is an illustrative LED application environment, not a claimed real OSEL project or identifiable product.",
+    "controlRefinement": "Edit this image only to remove all tiny lettering, numbers, glyph-like labels and UI menus from the large wall display and all workstation monitors. Replace their screen content with clean entirely unlabeled blue geographic contour shapes and abstract flowing blue lines, no text or glyphs anywhere. Preserve exactly the architecture, desks, chairs, camera, composition, lighting, reflections, realistic photography and color palette. Do not add objects. Keep resolution and framing.",
+    "manufacturing": "Use case: photorealistic-natural. Generate a premium commercial photograph illustrating precision LED display manufacturing and quality inspection for a corporate website section titled Built with precision. Manufactured for impact. Wide landscape 2.4:1 composition, high-resolution 4K look. A believable modern electronics production floor with orderly surface-mount assembly equipment receding into the background, and a central foreground ESD-safe quality inspection workbench holding a real-looking square LED display module with a dense uniform matrix of tiny LED pixels. A technician wearing a navy ESD coat and grounded wrist strap carefully inspects the module under a bench magnifier; natural anatomy, hands not prominent, viewed from behind or three-quarter back. Another assembled LED panel under uniform blue/white test illumination sits upright beside the inspection station. Realistic aluminum machines, neutral clean floors, disciplined cable routing, soft overhead factory lighting, understated OSEL-blue accents, cinematic but credible commercial photography, no excessive futuristic effects. Keep the LED inspection workbench and technician centered so the subject survives both an ultra-wide desktop crop and a 4:3 mobile crop. This is an illustrative manufacturing scene, NOT a photograph of a real OSEL factory; do not invent a recognizable facility or branded hardware. No text, lettering, numbers, logos, labels, watermarks, holograms, unrelated products, EVs or sci-fi machinery. Consistent with premium architectural technology photography, clean sharp details and natural material texture.",
+    "shield": "Premium photorealistic commercial architectural photograph, wide 16:9, high-resolution look. A modern corporate reception lounge with a large immaculate seamless fine-pitch indoor LED wall permanently integrated flush into a pale stone wall. Show the full rectangular display including all four edges, centered with breathing room. Display artwork is a detailed blue mountainous landscape, clean fine-grained texture, no visible coarse pixels, no text. Elegant low neutral seating, restrained wood, brushed aluminum and stone, soft daylight and cinematic architectural lighting. Palette OSEL blue #005AAB, pale blue #62B7E8, navy, warm white. Realistic high-end indoor display application, not an exact depiction of an OSEL model or a claimed real installation. No logos, lettering, watermark, numbers, people, UI, sci-fi neon or unrelated products. Natural perspective, credible screen proportions, premium corporate photography consistent with modern LED display imagery.",
+    "horizon": "Photorealistic premium outdoor LED display application photography, wide 16:9 high-resolution commercial architectural image. A large high-brightness outdoor rectangular LED screen mounted securely on the facade of a sophisticated modern commercial building overlooking an orderly landscaped plaza. Show the full screen and all its edges centered with generous surroundings. Bright clear daytime, realistic sunlight on stone and glass, display remains vivid with abstract blue ocean waves, believable luminosity without glowing halo. Camera near ground level gentle three-quarter perspective, realistic structural integration, a few trees and clean paving, no people or vehicles. Consistent palette OSEL blue #005AAB, pale blue #62B7E8, navy, neutral limestone and natural sky. No text anywhere, no letters, numbers, advertisements, logos, watermark, sci-fi, neon or fake technical specifications. This is an illustrative outdoor LED installation scene, not an exact OSEL product rendering or an actual claimed OSEL project.",
+    "engage": "Photorealistic premium corporate commercial photograph, high-resolution look, wide 16:9. A large all-in-one interactive flat panel on a simple sturdy wheeled stand in an elegant modern collaboration room. Entire display and entire stand fully visible in the center with ample margins, believable thin bezel and small stylus resting in the integrated lower tray. Screen shows only a few clean abstract blue geometric shapes and one curved annotation line, absolutely no letters, numbers, menus or text. Neutral chairs and a small meeting table unobtrusively in the background, oak and pale stone materials, navy details, OSEL blue #005AAB and pale blue #62B7E8. Soft natural window light, balanced cinematic fill, realistic reflections and construction, accurate straight perspective. No people, logos, labels, watermark, text, unrelated gadgets, fake specifications or sci-fi. Illustrative interactive-display application, not an exact OSEL product rendering or a claimed installation. Match premium architectural technology photography collection."
+  },
+  "assets": [
+    {
+      "slug": "clario-slim",
+      "path": "/assets/images/applications/led-executive-meeting-room.webp",
+      "alt": "Illustrative fine-pitch LED display in a modern meeting room",
+      "kind": "AI-generated illustrative application scene; not a photograph of a named OSEL product or installation",
+      "width": 1672,
+      "height": 941,
+      "bytes": 203056,
+      "source": "exec-9f863ef4-2f80-404e-bbf7-1e2e3a8f6096.png"
+    },
+    {
+      "slug": "clario-zen",
+      "path": "/assets/images/applications/micro-pitch-control-room.webp",
+      "alt": "Illustrative micro-pitch LED video wall in a control room",
+      "kind": "AI-generated illustrative application scene; not a photograph of a named OSEL product or installation",
+      "width": 1672,
+      "height": 941,
+      "bytes": 241714,
+      "source": "exec-6216345d-dbac-4629-a527-15e35ba7f779.png"
+    },
+    {
+      "slug": "nomad-curve",
+      "path": "/assets/images/applications/curved-led-exhibition.webp",
+      "alt": "Illustrative curved rental LED wall in an exhibition hall",
+      "kind": "AI-generated illustrative application scene; not a photograph of a named OSEL product or installation",
+      "width": 1672,
+      "height": 941,
+      "bytes": 293276,
+      "source": "exec-33bd0736-9992-4ed9-8f55-c3bd2367e50f.png"
+    },
+    {
+      "slug": "nomad-flex",
+      "path": "/assets/images/applications/touring-led-stage.webp",
+      "alt": "Illustrative touring stage with LED walls and mesh panels",
+      "kind": "AI-generated illustrative application scene; not a photograph of a named OSEL product or installation",
+      "width": 1672,
+      "height": 941,
+      "bytes": 322784,
+      "source": "exec-302ce1b8-8979-49e1-850d-4ab76b1bb465.png"
+    },
+    {
+      "slug": "nomad-link",
+      "path": "/assets/images/applications/modular-led-conference.webp",
+      "alt": "Illustrative modular LED installation at a corporate event",
+      "kind": "AI-generated illustrative application scene; not a photograph of a named OSEL product or installation",
+      "width": 1672,
+      "height": 941,
+      "bytes": 171900,
+      "source": "exec-bd06ab03-6ec1-49a9-9df9-a7ad86898f59.png"
+    },
+    {
+      "slug": "muse-duo",
+      "path": "/assets/images/applications/retail-dual-sided-signage.webp",
+      "alt": "Illustrative suspended digital signage in a retail arcade",
+      "kind": "AI-generated illustrative application scene; not a photograph of a named OSEL product or installation",
+      "width": 1672,
+      "height": 941,
+      "bytes": 248704,
+      "source": "exec-23b42d92-78a4-42ee-8c7a-39b3760316fe.png"
+    },
+    {
+      "slug": "vision",
+      "path": "/assets/images/applications/indoor-led-atrium.webp",
+      "alt": "Illustrative architectural LED wall in a corporate atrium",
+      "kind": "AI-generated illustrative application scene; not a photograph of a named OSEL product or installation",
+      "width": 1086,
+      "height": 1448,
+      "bytes": 243944,
+      "source": "exec-6d20dc85-3e59-4938-80d9-68c782233638.png"
+    },
+    {
+      "slug": "manufacturing",
+      "path": "/assets/images/applications/led-manufacturing-quality-inspection.webp",
+      "alt": "Illustrative LED display module assembly and quality inspection scene",
+      "kind": "AI-generated illustrative scene; not a photograph of OSEL’s actual facility",
+      "width": 1942,
+      "height": 809,
+      "bytes": 253332,
+      "source": "exec-ca918559-002c-46d6-90c3-bbff01245257.png"
+    },
+    {
+      "slug": "clario-shield",
+      "path": "/assets/images/applications/fine-pitch-indoor-led-lounge.webp",
+      "alt": "Illustrative fine-pitch indoor LED wall in a corporate lounge",
+      "kind": "AI-generated illustrative application; not an exact OSEL product or real installation",
+      "width": 1672,
+      "height": 941,
+      "bytes": 243400,
+      "source": "exec-e5f2ae3e-1283-47cd-a580-0437d6c67227.png"
+    },
+    {
+      "slug": "horizon-blaze",
+      "path": "/assets/images/applications/outdoor-led-commercial-facade.webp",
+      "alt": "Illustrative outdoor LED display on a commercial building",
+      "kind": "AI-generated illustrative application; not an exact OSEL product or real installation",
+      "width": 1672,
+      "height": 941,
+      "bytes": 384894,
+      "source": "exec-e3e81500-8e10-4c82-9416-c9f49f803656.png"
+    },
+    {
+      "slug": "engage-board",
+      "path": "/assets/images/applications/interactive-display-collaboration-room.webp",
+      "alt": "Illustrative all-in-one interactive display in a collaboration room",
+      "kind": "AI-generated illustrative application; not an exact OSEL product or real installation",
+      "width": 1672,
+      "height": 940,
+      "bytes": 166940,
+      "source": "exec-44d62f90-ddc5-4bba-b376-b974f32e90a1.png"
+    }
+  ]
+}
