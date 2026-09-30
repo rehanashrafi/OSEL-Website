@@ -190,11 +190,16 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
     });
 
     media.add(
-      { desktop: "(min-width: 1024px)", compact: "(max-width: 1023px)", motion: "(prefers-reduced-motion: no-preference)" },
+      { desktop: "(min-width: 1024px)", compact: "(max-width: 1023px)", tabletUp: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-preference)" },
       (context) => {
         if (!context.conditions?.motion) return;
         const desktop = Boolean(context.conditions.desktop);
         const headerOffset = () => parseFloat(getComputedStyle(root).getPropertyValue(desktop ? "--header-height-compact" : "--header-height-mobile"));
+        const setupProducts = () => {
+          if (!context.conditions?.tabletUp) {
+            nativeProgress();
+            return () => {};
+          }
         products.dataset.pinned = "true";
         viewport.scrollLeft = 0;
         const distance = () =>
@@ -264,6 +269,15 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
             },
           );
         });
+          return () => {
+          delete products.dataset.pinned;
+          products.removeEventListener("osel:product-step", step);
+          products.removeEventListener("focusin", focus);
+          viewport.scrollLeft = 0;
+          updateProductProgress(0);
+          };
+        };
+        const stopProducts = setupProducts();
         const pillars = root.querySelector<HTMLElement>(
           "[data-pillar-section]",
         )!;
@@ -315,12 +329,8 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
           },
         );
         return () => {
-
-          delete products.dataset.pinned;
+          stopProducts();
           delete pillars.dataset.pinned;
-          products.removeEventListener("osel:product-step", step);
-          products.removeEventListener("focusin", focus);
-          viewport.scrollLeft = 0;
         };
       },
     );
