@@ -8,7 +8,21 @@ import { ClienteleSection } from "@/components/sections/home/ClienteleSection";
 import { JourneySection } from "@/components/sections/home/JourneySection";
 import { ExperienceCTASection } from "@/components/sections/home/ExperienceCTASection";
 import { HomeMotion } from "@/components/sections/home/HomeMotion";
+import { StudioVideoReveal } from "@/components/sections/home/StudioVideoReveal";
 
 export default function HomePage() {
-  return <HomeMotion><HeroSection /><ProductLaunchSection /><WelcomeSection /><WhyOselSection /><ProductUniverseSection /><ManufacturingStatementSection /><ClienteleSection /><JourneySection /><ExperienceCTASection /></HomeMotion>;
+  return (
+    <HomeMotion>
+      <HeroSection />
+      <ProductLaunchSection />
+      <WelcomeSection />
+      <WhyOselSection />
+      <ProductUniverseSection />
+      <StudioVideoReveal />
+      <ManufacturingStatementSection />
+      <ClienteleSection />
+      <JourneySection />
+      <ExperienceCTASection />
+    </HomeMotion>
+  );
 }

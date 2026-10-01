@@ -5,11 +5,447 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html.osel-loading {
+  overflow: hidden;
+
+  body {
+    overflow: hidden;
+  }
+}
+
+html.osel-loaded {
+  .osel-loader {
+    display: none !important;
+  }
+}
 @layer base {
-  html { background: var(--background); scroll-padding-top: var(--header-height); scrollbar-gutter: stable; }
-  body { margin: 0; background: var(--background); color: var(--text-primary); }
-  ::selection { background: var(--accent); color: var(--on-accent); }
-  :focus-visible { outline: 2px solid var(--text-primary); outline-offset: 6px; }
-  button, a { -webkit-tap-highlight-color: transparent; }
-  button:disabled { cursor: not-allowed; }
+  html {
+    background: var(--background);
+    scroll-padding-top: var(--header-height);
+    scrollbar-gutter: stable;
+  }
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 6px;
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.osel-cursor-trail {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  z-index: 2147483647;
+
+  width: 0;
+  height: 0;
+
+  pointer-events: none;
+
+  visibility: hidden;
+
+  &.is-visible {
+    visibility: visible;
+  }
+
+  &__item {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 28px;
+    height: 28px;
+
+    object-fit: contain;
+
+    pointer-events: none;
+    user-select: none;
+
+    will-change: transform;
+
+    transform-origin: center;
+
+    /*
+     * Important:
+     * no background / border / text.
+     * Only your actual OSEL icon.
+     */
+  }
+
+  // Main logo
+  &__item--0 {
+    z-index: 10;
+
+    opacity: 1;
+
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15))
+      drop-shadow(0 0 5px rgba(221, 172, 55, 0.25));
+  }
+
+  // Trail
+  &__item--1 {
+    z-index: 9;
+    opacity: 0.72;
+  }
+
+  &__item--2 {
+    z-index: 8;
+    opacity: 0.42;
+  }
+
+  &__item--3 {
+    z-index: 7;
+    opacity: 0.26;
+    filter: blur(0.3px);
+  }
+
+  &__item--4 {
+    z-index: 6;
+    opacity: 0.1;
+    filter: blur(0.6px);
+  }
+
+  &__item--5 {
+    z-index: 5;
+    opacity: 0.07;
+    filter: blur(1px);
+  }
+
+  &__item--6 {
+    z-index: 4;
+    opacity: 0.01;
+    filter: blur(1.4px);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .osel-cursor-trail {
+    display: none;
+  }
+}
+
+.osel-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  background: #050505;
+  isolation: isolate;
+
+  &__curtain {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 50.5%;
+    background:
+      radial-gradient(
+        circle at 50% 100%,
+        rgba(254, 200, 68, 0.035),
+        transparent 45%
+      ),
+      #050505;
+    will-change: transform;
+
+    &--top {
+      top: 0;
+    }
+
+    &--bottom {
+      bottom: 0;
+      transform: rotate(180deg);
+    }
+  }
+
+  &__noise {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0.025;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  }
+
+  &__vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at center,
+      transparent 15%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.75) 100%
+    );
+  }
+
+  &__center {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__brand {
+    position: relative;
+    width: clamp(340px, 46vw, 700px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__glow {
+    position: absolute;
+    width: min(55vw, 600px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle,
+      rgba(254, 200, 68, 0.16) 0%,
+      rgba(254, 200, 68, 0.07) 25%,
+      rgba(254, 200, 68, 0.015) 50%,
+      transparent 70%
+    );
+    filter: blur(15px);
+  }
+
+  &__assembly,
+  &__final-logo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1648 / 928;
+  }
+
+  &__assembly {
+    z-index: 2;
+  }
+
+  &__final-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    overflow: hidden;
+    will-change: transform, opacity;
+
+    img {
+      object-fit: contain;
+      image-rendering: auto;
+    }
+  }
+
+  &__piece {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    will-change: transform, opacity;
+
+    img {
+      object-fit: contain;
+      image-rendering: auto;
+    }
+
+    &--1 {
+      clip-path: polygon(0 0, 28% 0, 20% 50%, 0 42%);
+    }
+
+    &--2 {
+      clip-path: polygon(28% 0, 53% 0, 48% 43%, 20% 50%);
+    }
+
+    &--3 {
+      clip-path: polygon(53% 0, 76% 0, 73% 48%, 48% 43%);
+    }
+
+    &--4 {
+      clip-path: polygon(76% 0, 100% 0, 100% 44%, 73% 48%);
+    }
+
+    &--5 {
+      clip-path: polygon(0 42%, 20% 50%, 26% 100%, 0 100%);
+    }
+
+    &--6 {
+      clip-path: polygon(20% 50%, 48% 43%, 52% 100%, 26% 100%);
+    }
+
+    &--7 {
+      clip-path: polygon(48% 43%, 73% 48%, 77% 100%, 52% 100%);
+    }
+
+    &--8 {
+      clip-path: polygon(73% 48%, 100% 44%, 100% 100%, 77% 100%);
+    }
+  }
+
+  &__sweep {
+    position: absolute;
+    z-index: 4;
+    top: -60%;
+    bottom: -60%;
+    left: 40%;
+    width: 18%;
+    opacity: 0;
+    transform: skewX(-18deg);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 244, 195, 0.95),
+      rgba(255, 255, 255, 0.15),
+      transparent
+    );
+    filter: blur(5px);
+    pointer-events: none;
+  }
+
+  &__tagline {
+    position: absolute;
+    top: calc(100% - 55px);
+    left: 50%;
+    z-index: 5;
+    margin: 0;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: clamp(16px, 1.5vw, 20px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: none;
+  }
+
+  &__loading {
+    position: absolute;
+    z-index: 5;
+    right: clamp(24px, 5vw, 72px);
+    bottom: clamp(28px, 6vh, 64px);
+    left: clamp(24px, 5vw, 72px);
+  }
+
+  &__loading-meta {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.18em;
+  }
+
+  &__percentage {
+    display: flex;
+    align-items: flex-end;
+    color: #fff;
+    font-size: clamp(30px, 4vw, 54px);
+    font-weight: 300;
+    line-height: 0.8;
+    letter-spacing: -0.055em;
+    font-variant-numeric: tabular-nums;
+
+    small {
+      margin-left: 5px;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 9px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+  }
+
+  &__track {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    overflow: visible;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  &__progress {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: #fec844;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+      background: #fec844;
+      box-shadow:
+        0 0 8px rgba(254, 200, 68, 0.8),
+        0 0 18px rgba(254, 200, 68, 0.45);
+    }
+  }
+}
+
+html.osel-loading,
+html.osel-loading body {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .osel-intro {
+    &__brand {
+      width: min(88vw, 500px);
+    }
+
+    &__glow {
+      width: 100vw;
+    }
+
+    &__tagline {
+      top: calc(100% - 95px);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+    }
+
+    &__loading {
+      right: 24px;
+      bottom: 35px;
+      left: 24px;
+    }
+
+    &__loading-meta {
+      font-size: 7px;
+    }
+
+    &__percentage {
+      font-size: 34px;
+    }
+  }
 }

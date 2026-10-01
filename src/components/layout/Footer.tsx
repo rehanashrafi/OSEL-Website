@@ -3,10 +3,10 @@ import {
   footerNavigation,
   legalNavigation,
   socialNavigation,
-  enquiry,
+  // enquiry,
 } from "@/data/navigation";
 import { Brand } from "@/components/ui/Brand";
-import { EnquiryButton } from "@/components/ui/EnquiryButton";
+// import { EnquiryButton } from "@/components/ui/EnquiryButton";
 import { NavigationLink } from "@/components/ui/NavigationLink";
 import { FooterMotion } from "./FooterMotion";
 
@@ -36,6 +36,7 @@ export function Footer() {
               )}
             </div>
           </div> */}
+
           <div className="grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.4fr_1fr_1fr_1.3fr_1fr]">
             <div data-footer-reveal>
               <Brand />

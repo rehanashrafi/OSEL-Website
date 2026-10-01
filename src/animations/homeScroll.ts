@@ -61,14 +61,14 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const hero = root.querySelector<HTMLElement>("#home-hero")!;
       gsap.to(hero.querySelector("[data-hero-content]"), {
-        y: () => window.matchMedia("(max-width: 1023px)").matches ? -15 : -35,
+        y: () => (window.matchMedia("(max-width: 1023px)").matches ? -15 : -35),
         opacity: 0.25,
         ease: "none",
         scrollTrigger: {
           trigger: hero,
           start: "top top",
           end: "bottom 10%",
-          scrub: 0.5,
+          scrub: 1,
         },
       });
       gsap.to(hero.querySelector("[data-hero-field]"), {
@@ -78,7 +78,7 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
           trigger: hero,
           start: "top top",
           end: "bottom top",
-          scrub: 0.6,
+          scrub: 1,
         },
       });
       const factory = root.querySelector<HTMLElement>("[data-manufacturing]")!;
@@ -92,7 +92,7 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
             trigger: factory,
             start: "top 65%",
             end: "center 35%",
-            scrub: 0.5,
+            scrub: 1,
           },
         },
       );
@@ -106,7 +106,7 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
             trigger: factory,
             start: "top bottom",
             end: "bottom top",
-            scrub: 0.6,
+            scrub: 1,
           },
         },
       );
@@ -190,91 +190,103 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
     });
 
     media.add(
-      { desktop: "(min-width: 1024px)", compact: "(max-width: 1023px)", tabletUp: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-preference)" },
+      {
+        desktop: "(min-width: 1024px)",
+        compact: "(max-width: 1023px)",
+        tabletUp: "(min-width: 768px)",
+        motion: "(prefers-reduced-motion: no-preference)",
+      },
       (context) => {
         if (!context.conditions?.motion) return;
         const desktop = Boolean(context.conditions.desktop);
-        const headerOffset = () => parseFloat(getComputedStyle(root).getPropertyValue(desktop ? "--header-height-compact" : "--header-height-mobile"));
+        const headerOffset = () =>
+          parseFloat(
+            getComputedStyle(root).getPropertyValue(
+              desktop ? "--header-height-compact" : "--header-height-mobile",
+            ),
+          );
         const setupProducts = () => {
           if (!context.conditions?.tabletUp) {
             nativeProgress();
             return () => {};
           }
-        products.dataset.pinned = "true";
-        viewport.scrollLeft = 0;
-        const distance = () =>
-          Math.max(0, track.scrollWidth - viewport.clientWidth);
-        const productTween = gsap.to(track, {
-          x: () => -distance(),
-          ease: "none",
-          scrollTrigger: {
-            id: "home-products",
-            refreshPriority: 2,
-            trigger: products,
-            pin: products.querySelector("[data-product-pin]"),
-            start: () => `top ${headerOffset()}px`,
-            end: () => `+=${desktop ? Math.min(3000, window.innerHeight * 3.2) : Math.min(distance(), Math.max(1200, viewport.clientWidth * 4))}`,
-            scrub: 0.5,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => updateProductProgress(self.progress),
-          },
-        });
-        const productTrigger = productTween.scrollTrigger!;
-        const goTo = (index: number, immediate = false) => {
-          const position =
-            Math.max(0, Math.min(cards.length - 1, index)) / (cards.length - 1);
-          scrollToPosition(
-            productTrigger.start +
-              position * (productTrigger.end - productTrigger.start),
-            immediate,
-          );
-          if (immediate) {
-            productTween.progress(position);
-            ScrollTrigger.update();
-          }
-        };
-        const step = (event: Event) => {
-          event.preventDefault();
-          goTo(
-            Math.round(productTrigger.progress * (cards.length - 1)) +
-              (event as CustomEvent<number>).detail,
-          );
-        };
-        const focus = (event: FocusEvent) => {
-          const target = (event.target as HTMLElement).closest<HTMLElement>(
-            "[data-product-card]",
-          );
-          if (target) {
-            viewport.scrollLeft = 0;
-            goTo(cards.indexOf(target), true);
-          }
-        };
-        products.addEventListener("osel:product-step", step);
-        products.addEventListener("focusin", focus);
-        cards.forEach((card) => {
-          gsap.fromTo(
-            card.querySelector("img"),
-            { scale: 0.96 },
-            {
-              scale: 1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: productTween,
-                start: "left right",
-                end: "center center",
-                scrub: true,
-              },
-            },
-          );
-        });
-          return () => {
-          delete products.dataset.pinned;
-          products.removeEventListener("osel:product-step", step);
-          products.removeEventListener("focusin", focus);
+          products.dataset.pinned = "true";
           viewport.scrollLeft = 0;
-          updateProductProgress(0);
+          const distance = () =>
+            Math.max(0, track.scrollWidth - viewport.clientWidth);
+          const productTween = gsap.to(track, {
+            x: () => -distance(),
+            ease: "none",
+            scrollTrigger: {
+              id: "home-products",
+              refreshPriority: 2,
+              trigger: products,
+              pin: products.querySelector("[data-product-pin]"),
+              start: () => `top ${headerOffset()}px`,
+              end: () =>
+                `+=${desktop ? Math.min(3000, window.innerHeight * 3.2) : Math.min(distance(), Math.max(1200, viewport.clientWidth * 4))}`,
+              scrub: 1,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              onUpdate: (self) => updateProductProgress(self.progress),
+            },
+          });
+          const productTrigger = productTween.scrollTrigger!;
+          const goTo = (index: number, immediate = false) => {
+            const position =
+              Math.max(0, Math.min(cards.length - 1, index)) /
+              (cards.length - 1);
+            scrollToPosition(
+              productTrigger.start +
+                position * (productTrigger.end - productTrigger.start),
+              immediate,
+            );
+            if (immediate) {
+              productTween.progress(position);
+              ScrollTrigger.update();
+            }
+          };
+          const step = (event: Event) => {
+            event.preventDefault();
+            goTo(
+              Math.round(productTrigger.progress * (cards.length - 1)) +
+                (event as CustomEvent<number>).detail,
+            );
+          };
+          const focus = (event: FocusEvent) => {
+            const target = (event.target as HTMLElement).closest<HTMLElement>(
+              "[data-product-card]",
+            );
+            if (target) {
+              viewport.scrollLeft = 0;
+              goTo(cards.indexOf(target), true);
+            }
+          };
+          products.addEventListener("osel:product-step", step);
+          products.addEventListener("focusin", focus);
+          cards.forEach((card) => {
+            gsap.fromTo(
+              card.querySelector("img"),
+              { scale: 0.96 },
+              {
+                scale: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: card,
+                  containerAnimation: productTween,
+                  start: "left right",
+                  end: "center center",
+                  scrub: true,
+                },
+              },
+            );
+          });
+          return () => {
+            delete products.dataset.pinned;
+            products.removeEventListener("osel:product-step", step);
+            products.removeEventListener("focusin", focus);
+            viewport.scrollLeft = 0;
+            updateProductProgress(0);
           };
         };
         const stopProducts = setupProducts();
@@ -293,8 +305,9 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
             trigger: pillars,
             pin: pillars.querySelector("[data-pillar-pin]"),
             start: () => `top ${headerOffset()}px`,
-            end: () => `+=${desktop ? Math.min(2200, window.innerHeight * 2.3) : Math.max(1000, pillars.querySelector<HTMLElement>("[data-pillar-pin]")!.clientHeight * 1.8)}`,
-            scrub: 0.5,
+            end: () =>
+              `+=${desktop ? Math.min(2200, window.innerHeight * 2.3) : Math.max(1000, pillars.querySelector<HTMLElement>("[data-pillar-pin]")!.clientHeight * 1.8)}`,
+            scrub: 1,
             anticipatePin: 1,
             invalidateOnRefresh: true,
           },
@@ -303,16 +316,47 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
           storyTimeline
             .to(
               stories[index],
-              { opacity: 0, y: -24, duration: 0.3 },
+              {
+                opacity: 0,
+                y: -24,
+                duration: 0.3,
+              },
               index + 0.7,
             )
-            .to(story, { opacity: 1, y: 0, duration: 0.3 }, index + 0.8)
+            .to(
+              story,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.3,
+              },
+              index + 0.8,
+            )
             .from(
-              story.querySelector(".precision-orbit"),
-              { rotate: -15, scale: 0.9, duration: 0.6 },
+              story.querySelector("[data-pillar-image]"),
+              {
+                opacity: 0,
+                scale: 0.94,
+                duration: 0.6,
+                ease: "power2.out",
+              },
               index + 0.7,
             );
         });
+        // stories.slice(1).forEach((story, index) => {
+        //   storyTimeline
+        //     .to(
+        //       stories[index],
+        //       { opacity: 0, y: -24, duration: 0.3 },
+        //       index + 0.7,
+        //     )
+        //     .to(story, { opacity: 1, y: 0, duration: 0.3 }, index + 0.8)
+        //     .from(
+        //       story.querySelector(".precision-orbit"),
+        //       { rotate: -15, scale: 0.9, duration: 0.6 },
+        //       index + 0.7,
+        //     );
+        // });
         storyTimeline.to({}, { duration: 0.5 });
         gsap.fromTo(
           pillars.querySelector("[data-pillar-progress]"),
@@ -349,7 +393,10 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
           y(((event.clientY - rect.top) / rect.height - 0.5) * 80);
         };
         cta.addEventListener("pointermove", move);
-        return () => { stopSmooth(); cta.removeEventListener("pointermove", move); };
+        return () => {
+          stopSmooth();
+          cta.removeEventListener("pointermove", move);
+        };
       },
     );
     // Pins must establish document geometry before any one-shot reveal captures its start.
