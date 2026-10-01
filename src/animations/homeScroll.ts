@@ -293,74 +293,358 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
         const pillars = root.querySelector<HTMLElement>(
           "[data-pillar-section]",
         )!;
+
         pillars.dataset.pinned = "true";
+
+        const pillarPin =
+          pillars.querySelector<HTMLElement>("[data-pillar-pin]")!;
+
         const stories = Array.from(
           pillars.querySelectorAll<HTMLElement>("[data-pillar]"),
         );
-        gsap.set(stories.slice(1), { opacity: 0, y: 28 });
+
+        gsap.set(stories.slice(1), {
+          opacity: 0,
+          y: 28,
+        });
+
         const storyTimeline = gsap.timeline({
           scrollTrigger: {
             id: "home-pillars",
-            refreshPriority: 1,
             trigger: pillars,
-            pin: pillars.querySelector("[data-pillar-pin]"),
+            pin: pillarPin,
             start: () => `top ${headerOffset()}px`,
             end: () =>
-              `+=${desktop ? Math.min(2200, window.innerHeight * 2.3) : Math.max(1000, pillars.querySelector<HTMLElement>("[data-pillar-pin]")!.clientHeight * 1.8)}`,
-            scrub: 1,
+              `+=${
+                desktop
+                  ? Math.max(3600, window.innerHeight * 4.4)
+                  : Math.max(2200, pillarPin.clientHeight * 2.7)
+              }`,
+            scrub: 1.6,
             anticipatePin: 1,
             invalidateOnRefresh: true,
           },
         });
+
         stories.slice(1).forEach((story, index) => {
-          storyTimeline
-            .to(
-              stories[index],
+          const currentStory = stories[index];
+
+          const currentPage = currentStory.querySelector<HTMLElement>(
+            "[data-pillar-image]",
+          );
+
+          const currentShadow =
+            currentStory.querySelector<HTMLElement>("[data-page-shadow]");
+
+          const currentHighlight = currentStory.querySelector<HTMLElement>(
+            "[data-page-highlight]",
+          );
+
+          const nextPage = story.querySelector<HTMLElement>(
+            "[data-pillar-image]",
+          );
+
+          const nextImage =
+            story.querySelector<HTMLElement>("[data-pillar-next]");
+
+          const position = index * 1.55 + 0.6;
+
+          if (nextImage) {
+            gsap.set(nextImage, {
+              opacity: 0,
+              scale: 1.045,
+              filter: "brightness(0.62)",
+            });
+          }
+
+          if (nextPage) {
+            gsap.set(nextPage, {
+              opacity: 0,
+              rotateX: 0,
+              yPercent: 0,
+              scaleY: 1,
+              z: 0,
+              transformOrigin: "50% 0%",
+            });
+          }
+
+          // Reveal the next image gradually under the folding page.
+          if (nextImage) {
+            storyTimeline.fromTo(
+              nextImage,
               {
                 opacity: 0,
-                y: -24,
-                duration: 0.3,
+                scale: 1.045,
+                filter: "brightness(0.62)",
               },
-              index + 0.7,
-            )
-            .to(
-              story,
               {
                 opacity: 1,
-                y: 0,
-                duration: 0.3,
+                scale: 1,
+                filter: "brightness(1)",
+                duration: 1.05,
+                ease: "none",
+                immediateRender: false,
               },
-              index + 0.8,
-            )
-            .from(
-              story.querySelector("[data-pillar-image]"),
+              position + 0.05,
+            );
+          }
+
+          // Build the shadow while the page starts bending.
+          if (currentShadow) {
+            storyTimeline.to(
+              currentShadow,
+              {
+                opacity: 0.82,
+                duration: 0.4,
+                ease: "power1.in",
+              },
+              position,
+            );
+          }
+
+          // Add a highlight around the folding edge.
+          if (currentHighlight) {
+            storyTimeline.to(
+              currentHighlight,
+              {
+                opacity: 0.8,
+                duration: 0.38,
+                ease: "power1.out",
+              },
+              position + 0.04,
+            );
+          }
+
+          if (currentPage) {
+            // Start bending from the top hinge.
+            storyTimeline.to(
+              currentPage,
+              {
+                rotateX: -52,
+                yPercent: -1,
+                z: 70,
+                scaleY: 0.99,
+                duration: 0.38,
+                ease: "power1.in",
+                transformOrigin: "50% 0%",
+              },
+              position,
+            );
+
+            // Pull the page toward the viewer.
+            storyTimeline.to(
+              currentPage,
+              {
+                rotateX: -118,
+                yPercent: -2.5,
+                z: 155,
+                scaleY: 0.84,
+                duration: 0.42,
+                ease: "power1.inOut",
+              },
+              position + 0.3,
+            );
+
+            // Continue folding toward the top.
+            storyTimeline.to(
+              currentPage,
+              {
+                rotateX: -162,
+                yPercent: -4.5,
+                z: 90,
+                scaleY: 0.44,
+                duration: 0.36,
+                ease: "power2.inOut",
+              },
+              position + 0.65,
+            );
+
+            // Collapse the page into the top edge.
+            storyTimeline.to(
+              currentPage,
+              {
+                rotateX: -179,
+                yPercent: -6,
+                z: 20,
+                scaleY: 0.025,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power3.in",
+              },
+              position + 0.92,
+            );
+          }
+
+          // Bring the next story in while the previous page is folding.
+          storyTimeline.to(
+            story,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.55,
+              ease: "power2.out",
+            },
+            position + 0.58,
+          );
+
+          // Move the old story away near the end of the fold.
+          storyTimeline.to(
+            currentStory,
+            {
+              opacity: 0,
+              y: -20,
+              duration: 0.34,
+              ease: "power2.in",
+            },
+            position + 0.84,
+          );
+
+          // Make the revealed image the new active calendar page.
+          if (nextPage) {
+            storyTimeline.set(
+              nextPage,
+              {
+                opacity: 1,
+                rotateX: 0,
+                yPercent: 0,
+                scaleY: 1,
+                z: 0,
+                transformOrigin: "50% 0%",
+              },
+              position + 1.18,
+            );
+          }
+
+          // Remove the temporary reveal layer after the transition.
+          if (nextImage) {
+            storyTimeline.set(
+              nextImage,
               {
                 opacity: 0,
-                scale: 0.94,
-                duration: 0.6,
-                ease: "power2.out",
               },
-              index + 0.7,
+              position + 1.2,
             );
+          }
         });
-        // stories.slice(1).forEach((story, index) => {
-        //   storyTimeline
-        //     .to(
-        //       stories[index],
-        //       { opacity: 0, y: -24, duration: 0.3 },
-        //       index + 0.7,
-        //     )
-        //     .to(story, { opacity: 1, y: 0, duration: 0.3 }, index + 0.8)
-        //     .from(
-        //       story.querySelector(".precision-orbit"),
-        //       { rotate: -15, scale: 0.9, duration: 0.6 },
-        //       index + 0.7,
-        //     );
-        // });
-        storyTimeline.to({}, { duration: 0.5 });
+
+        // Final page should also fold away before the section unpins.
+        const lastStory = stories[stories.length - 1];
+
+        const lastPage = lastStory?.querySelector<HTMLElement>(
+          "[data-pillar-image]",
+        );
+
+        const lastShadow =
+          lastStory?.querySelector<HTMLElement>("[data-page-shadow]");
+
+        const lastHighlight = lastStory?.querySelector<HTMLElement>(
+          "[data-page-highlight]",
+        );
+
+        if (lastStory && lastPage) {
+          const finalPosition = (stories.length - 1) * 1.55 + 0.9;
+
+          if (lastShadow) {
+            storyTimeline.to(
+              lastShadow,
+              {
+                opacity: 0.85,
+                duration: 0.38,
+                ease: "power1.in",
+              },
+              finalPosition,
+            );
+          }
+
+          if (lastHighlight) {
+            storyTimeline.to(
+              lastHighlight,
+              {
+                opacity: 0.9,
+                duration: 0.35,
+                ease: "power1.out",
+              },
+              finalPosition,
+            );
+          }
+
+          // Start the final calendar fold.
+          storyTimeline.to(
+            lastPage,
+            {
+              rotateX: -52,
+              yPercent: -1,
+              z: 75,
+              scaleY: 0.99,
+              duration: 0.38,
+              ease: "power1.in",
+              transformOrigin: "50% 0%",
+            },
+            finalPosition,
+          );
+
+          // Strong middle bend.
+          storyTimeline.to(
+            lastPage,
+            {
+              rotateX: -118,
+              yPercent: -2.5,
+              z: 160,
+              scaleY: 0.84,
+              duration: 0.42,
+              ease: "power1.inOut",
+            },
+            finalPosition + 0.3,
+          );
+
+          // Fold toward the top edge.
+          storyTimeline.to(
+            lastPage,
+            {
+              rotateX: -162,
+              yPercent: -4.5,
+              z: 90,
+              scaleY: 0.44,
+              duration: 0.36,
+              ease: "power2.inOut",
+            },
+            finalPosition + 0.65,
+          );
+
+          // Fully collapse the final page.
+          storyTimeline.to(
+            lastPage,
+            {
+              rotateX: -179,
+              yPercent: -6,
+              z: 20,
+              scaleY: 0.025,
+              opacity: 0,
+              duration: 0.3,
+              ease: "power3.in",
+            },
+            finalPosition + 0.92,
+          );
+
+          // Exit the final content at the same time.
+          storyTimeline.to(
+            lastStory,
+            {
+              opacity: 0,
+              y: -18,
+              duration: 0.25,
+              ease: "power2.in",
+            },
+            finalPosition + 0.86,
+          );
+        }
+
+        // Progress follows the complete pillar timeline.
         gsap.fromTo(
           pillars.querySelector("[data-pillar-progress]"),
-          { scaleX: 0.2 },
+          {
+            scaleX: 0.2,
+          },
           {
             scaleX: 1,
             ease: "none",
@@ -368,7 +652,7 @@ export async function setupHomeScroll(root: HTMLElement, signal?: AbortSignal) {
               trigger: pillars,
               start: () => storyTimeline.scrollTrigger!.start,
               end: () => storyTimeline.scrollTrigger!.end,
-              scrub: true,
+              scrub: 1.6,
             },
           },
         );

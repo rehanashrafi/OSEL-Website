@@ -35,15 +35,57 @@ export function WhyOselSection() {
                 </p>
               </div>
 
-              <div className="relative aspect-[16/10] w-full overflow-hidden">
-                <Image
-                  src={pillar.image}
-                  alt={pillar.imageAlt}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                />
+              <div
+                data-pillar-image-wrap
+                className="pillar-image-wrap relative aspect-[16/10] w-full"
+              >
+                <div
+                  data-pillar-next
+                  className="pillar-image-next absolute inset-0"
+                >
+                  <Image
+                    src={pillar.image}
+                    alt={pillar.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+
+                <div
+                  data-pillar-image
+                  className="pillar-image-page absolute inset-0"
+                >
+                  <Image
+                    src={pillar.image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+
+                  <span data-page-shadow className="pillar-page-shadow" />
+                  <span data-page-highlight className="pillar-page-highlight" />
+                </div>
               </div>
+
+              {/* <div
+                data-pillar-image-wrap
+                className="pillar-image-wrap relative aspect-[16/10] w-full overflow-hidden"
+              >
+                <div
+                  data-pillar-image
+                  className="pillar-image absolute inset-0"
+                >
+                  <Image
+                    src={pillar.image}
+                    alt={pillar.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div> */}
             </article>
           ))}
         </div>

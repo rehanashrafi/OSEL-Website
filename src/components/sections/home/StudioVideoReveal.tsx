@@ -41,16 +41,16 @@ export function StudioVideoReveal() {
       // ==========================================
 
       mm.add("(min-width: 769px)", () => {
-        /*
-         * Video starts large enough to completely
-         * cover the background image.
-         */
         gsap.set(videoWrap, {
           scale: 1.55,
+          x: 0,
+          y: 0,
           transformOrigin: "center center",
         });
 
         gsap.set(image, {
+          x: 0,
+          y: 0,
           scale: 1,
           opacity: 1,
         });
@@ -58,27 +58,12 @@ export function StudioVideoReveal() {
         timeline = gsap.timeline({
           scrollTrigger: {
             trigger: section,
-
-            /*
-             * Pin immediately when the section
-             * reaches the viewport.
-             */
             start: "top top",
-
-            /*
-             * More scroll distance gives the
-             * scale animation enough time.
-             */
             end: "+=180%",
-
             scrub: 1.2,
-
             pin: stage,
-
             pinSpacing: true,
-
             anticipatePin: 1,
-
             invalidateOnRefresh: true,
 
             onEnter: () => {
@@ -91,21 +76,29 @@ export function StudioVideoReveal() {
           },
         });
 
-        /*
-         * DOWN:
-         * Fullscreen/covering video -> small video.
-         *
-         * UP:
-         * Small video -> fullscreen/covering video.
-         */
+        // Video final transform:
+        // translate3d(0px, 0px, 0px) scale(0.4977, 0.4977)
         timeline.to(
           videoWrap,
           {
-            scale: 0.35,
-
-            ease: "none",
-
+            x: 0,
+            y: 0,
+            scale: 0.48,
             duration: 1,
+            ease: "none",
+          },
+          0,
+        );
+
+        // Background final transform:
+        // translate(0px, 80px)
+        timeline.to(
+          image,
+          {
+            x: 0,
+            y: 80,
+            duration: 1,
+            ease: "none",
           },
           0,
         );
@@ -115,6 +108,82 @@ export function StudioVideoReveal() {
           timeline?.kill();
         };
       });
+
+      // mm.add("(min-width: 769px)", () => {
+      //   /*
+      //    * Video starts large enough to completely
+      //    * cover the background image.
+      //    */
+      //   gsap.set(videoWrap, {
+      //     scale: 1.55,
+      //     transformOrigin: "center center",
+      //   });
+
+      //   gsap.set(image, {
+      //     scale: 1,
+      //     opacity: 1,
+      //   });
+
+      //   timeline = gsap.timeline({
+      //     scrollTrigger: {
+      //       trigger: section,
+
+      //       /*
+      //        * Pin immediately when the section
+      //        * reaches the viewport.
+      //        */
+      //       start: "top top",
+
+      //       /*
+      //        * More scroll distance gives the
+      //        * scale animation enough time.
+      //        */
+      //       end: "+=180%",
+
+      //       scrub: 1.2,
+
+      //       pin: stage,
+
+      //       pinSpacing: true,
+
+      //       anticipatePin: 1,
+
+      //       invalidateOnRefresh: true,
+
+      //       onEnter: () => {
+      //         void video.play().catch(() => undefined);
+      //       },
+
+      //       onEnterBack: () => {
+      //         void video.play().catch(() => undefined);
+      //       },
+      //     },
+      //   });
+
+      //   /*
+      //    * DOWN:
+      //    * Fullscreen/covering video -> small video.
+      //    *
+      //    * UP:
+      //    * Small video -> fullscreen/covering video.
+      //    */
+      //   timeline.to(
+      //     videoWrap,
+      //     {
+      //       scale: 0.35,
+
+      //       ease: "none",
+
+      //       duration: 1,
+      //     },
+      //     0,
+      //   );
+
+      //   return () => {
+      //     timeline?.scrollTrigger?.kill();
+      //     timeline?.kill();
+      //   };
+      // });
 
       // ==========================================
       // MOBILE
@@ -197,7 +266,7 @@ export function StudioVideoReveal() {
         {/* Background image */}
         <Image
           ref={imageRef}
-          src="https://noth-in.b-cdn.net/freepik__photography-frontal-shot-of-a-huge-large-169-white__495122.webp"
+          src="/assets/images/home/studio.png"
           alt=""
           fill
           priority
